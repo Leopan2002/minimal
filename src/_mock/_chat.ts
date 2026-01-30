@@ -36,26 +36,33 @@ const _messages = [
 
 export const _chatConversations = Array.from({ length: 12 }, (_, index) => {
   const contact = _chatContacts[index];
-  const isGroup = index % 3 === 0 && index !== 0; 
+  const isGroup = index % 3 === 0 && index !== 0;
   
-  const groupParticipants = isGroup 
+  const participants = isGroup 
     ? [contact, _chatContacts[(index + 1) % 20], _chatContacts[(index + 2) % 20]] 
     : [contact];
 
+  const messagesCount = Math.floor(Math.random() * 5) + 5; 
+  
+  const messages = Array.from({ length: messagesCount }, (_, msgIndex) => {
+    const isMe = msgIndex % 2 === 0;
+    const senderId = isMe ? 'user-id-0' : participants[msgIndex % participants.length].id;
+    
+    return {
+      id: _id((index * 100) + msgIndex), 
+      body: _messages[(index + msgIndex) % _messages.length],
+      contentType: 'text',
+      attachments: [],
+      createdAt: new Date(Date.now() - ((messagesCount - msgIndex) * 15 * 60 * 1000)), 
+      senderId,
+    };
+  });
+
   return {
     id: _id(index),
-    participants: groupParticipants,
+    participants,
     type: isGroup ? 'GROUP' : 'ONE_TO_ONE',
     unreadCount: index % 4 === 0 ? 0 : Math.floor(Math.random() * 5),
-    messages: [
-      {
-        id: _id(1),
-        body: _messages[index % _messages.length],
-        contentType: 'text',
-        attachments: [],
-        createdAt: new Date(Date.now() - (index * 15 * 60 * 1000)), 
-        senderId: contact.id,
-      },
-    ],
+    messages,
   };
 });
