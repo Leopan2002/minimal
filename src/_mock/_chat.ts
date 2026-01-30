@@ -44,7 +44,7 @@ export const _chatConversations = Array.from({ length: 12 }, (_, index) => {
 
   const messagesCount = Math.floor(Math.random() * 5) + 5; 
   
-  const messages = Array.from({ length: messagesCount }, (_, msgIndex) => {
+  const messages = Array.from({ length: messagesCount }, (__, msgIndex) => {
     const isMe = msgIndex % 2 === 0;
     const senderId = isMe ? 'user-id-0' : participants[msgIndex % participants.length].id;
     
