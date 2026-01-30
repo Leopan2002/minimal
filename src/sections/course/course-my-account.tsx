@@ -1,5 +1,7 @@
 import type { CardProps } from '@mui/material/Card';
 
+import { varAlpha } from 'minimal-shared/utils';
+
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
@@ -7,9 +9,6 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 
 import { fShortenNumber } from 'src/utils/format-number';
-
-import { varAlpha } from 'minimal-shared/utils';
-
 // ----------------------------------------------------------------------
 
 type Props = CardProps & {

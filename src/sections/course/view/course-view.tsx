@@ -17,8 +17,9 @@ import {
 } from 'src/_mock';
 
 import { Iconify } from 'src/components/iconify';
-import { CourseMyAccount } from '../course-my-account';
+
 import { CourseReminders } from '../course-reminders';
+import { CourseMyAccount } from '../course-my-account';
 import { CourseHoursChart } from '../course-hours-chart';
 import { CourseSummaryCard } from '../course-summary-card';
 import { CourseContinueItem } from '../course-continue-item';
